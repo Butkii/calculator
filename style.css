@@ -50,20 +50,20 @@ body {
     margin: 10px;
 }
 
-.btn {
+button {
     background: transparent;
     border: 0px;
     font-size: 16px;
 }
 
-.horizontal {
+.color1 {
     color: #4CCEC6;
 }
 
-.vertical {
+.color2 {
     color: #CE6C4C;
 }
 
-.digit {
+.color3 {
     color: #FFFFFF;
 }

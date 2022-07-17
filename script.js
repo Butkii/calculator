@@ -15,22 +15,78 @@ function divide(a, b) {
 };
 
 function operate(num1, num2, op) {
-    if (op == "1") {
-        console.log(num1 + " + " + num2 + " = " + add(num1, num2));
+    if (op == "+") {
+        return (num1 + num2);
     }
-    else if (op == "2") {
-        console.log(num1 + " - " + num2 + " = " + subtract(num1, num2));
+    else if (op == "-") {
+        return (num1 - num2);
     }
-    else if (op == "3") {
-        console.log(num1 + " * " + num2 + " = " + multiply(num2, num2));
+    else if (op == "x") {
+        return (num1 * num2);
     }
-    else if (op == "4") {
-        console.log(num1 + " / " + num2 + " = " + divide(num1, num2));
+    else if (op == "/") {
+        return (num1 / num2);
+    }
+    else if (op == "%") {
+        return (num1 % num2);
     }
     else {
-        console.log("invalid input");
+        return ("NaN");
     }
 }
+
+let displayText = "";
+let num1, num2, userop, result, operationCompleted;
+const digits = document.querySelectorAll('.digit');
+const operators = document.querySelectorAll('.oper');
+
+let solution = document.getElementById('solution');
+let previousOp = document.getElementById('previous-op');
+solution.innerHTML = "";
+previousOp.innerHTML = "";
+operationCompleted = false;
+
+digits.forEach(digit => digit.addEventListener('click', function(e) {
+    console.log(e.target.innerHTML);
+    if (operationCompleted === true) {
+        previousOp.innerHTML = result;
+        solution.innerHTML = "";
+        operationCompleted = false;
+    }
+    displayText = displayText + e.target.innerHTML;
+    solution.innerHTML = displayText;
+}));
+
+operators.forEach(operator => operator.addEventListener('click', function(e) {
+    console.log(e.target.innerHTML);
+    if (e.target.innerHTML == "=") {
+        num2 = parseInt(displayText);
+        previousOp.innerHTML += num2;
+        displayText = "";
+        result = operate(num1, num2, userop);
+        solution.innerHTML = result;
+        operationCompleted = true;
+    }
+    else {
+        num1 = parseInt(displayText);
+        userop = e.target.innerHTML;
+        if (previousOp.innerHTML == result) {
+            previousOp.innerHTML = (solution.innerHTML + userop);
+        }
+        else {
+            previousOp.innerHTML += (solution.innerHTML + userop);
+        }
+        if (operationCompleted === true) {
+            previousOp.innerHTML = result + userop;
+            num1 = result;
+            operationCompleted = false;
+        }        
+        displayText = "";
+        solution.innerHTML = "0";
+    }
+    
+}));
+
 
 
 // let num1 = parseInt(prompt('Enter number 1'));
