@@ -24,12 +24,12 @@ body {
 }
 
 #previous-op,
-#solution {
+#current-op {
     margin-left: 25px;
     padding: 5px 25px;
 }
 
-#solution {
+#current-op {
     font-size: 36px;
     font-weight: bolder;
 }

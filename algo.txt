@@ -1,0 +1,26 @@
+CASE 1: Click on a digit
+    CHECK: Is it right after a equals(completed operation)?
+        IF YES: Clear out previousOp
+                Clear out num1, num2, result, completedOperation and numberOfOperators
+    Add it to display 
+    Store total number in a variable [displayNum]
+        
+CASE 2: Click on an operator
+    CHECK: Is it =?
+        IF YES: Transfer displayNum to num2
+                previousOp += num2
+                result = operate(num1, num2, operator)
+                display = result
+                num1 = result
+                num2 = 0
+        IF NOT: 
+                CHECK: Is it first operator?
+                    IF YES: Transfer displayNum to num1
+                            Transfer num1 + operator to previousOp
+                            numberOfOperators = 1
+                    IF NOT: Transfer displayNum to num2
+                            previousOp num2 + operator to previousOp
+                            result = operate(num1, num2, operator) 
+                            num1 = result
+                            num2 = 0
+CASE 3: Click on decimal point
